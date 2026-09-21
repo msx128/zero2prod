@@ -15,8 +15,8 @@ DB_PASSWORD="${POSTGRES_PASSWORD:=password}"
 DB_NAME="${POSTGRES_DB:=newsletter}"
 DB_PORT="${POSTGRES_PORT:=5432}"
 
-docker compose up -d
-until docker compose ps db | grep -q "healthy"; do
+podman-compose up -d
+until podman-compose ps | grep postgres | grep -q "healthy"; do
   echo "Waiting for postgres to be healthy..."
   sleep 3
 done
